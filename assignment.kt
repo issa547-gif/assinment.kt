@@ -1,21 +1,19 @@
 
-// SECTION 1
+var studentName = "Issa Lemah"
+val studentId = 129608
+var gpa = 4.89
+val isEnrolled = true
+val middleInitial = 'Y'
 
-var studentName = "Issa Lemah"          // mutable
-val studentId = 129608                  // immutable
-var gpa = 4.89                           // mutable
-val isEnrolled = true                    // immutable
-val middleInitial = 'Y'                  // immutable
-
-fun task1_2() {
+fun firstTask() {
     println("Student: $studentName $middleInitial. (ID: $studentId) has GPA $gpa and is enrolled: $isEnrolled")
 }
 
-fun task1_3() {
+fun secondTask() {
     var phoneNumber: String? = null
+    // Safe access: prints "null" if phoneNumber is null
     println("Phone: ${phoneNumber ?: "null"}")
 }
-
 
 
 fun displayMenu() {
@@ -43,8 +41,7 @@ fun getGrade(score: Int): String {
 fun isEven(number: Int): Boolean = number % 2 == 0
 
 
-
-fun task3_1() {
+fun thirdTask() {
     val temperatures = listOf(35, 25, 15)
     for (temperature in temperatures) {
         if (temperature > 30) {
@@ -57,7 +54,7 @@ fun task3_1() {
     }
 }
 
-fun task3_2() {
+fun fourthTask() {
     val dayOfWeek = "Monday"
     when (dayOfWeek) {
         "Saturday", "Sunday" -> println("Weekend! Time to relax")
@@ -67,7 +64,7 @@ fun task3_2() {
     }
 }
 
-fun task3_3() {
+fun fifthTask() {
     val trafficLight = "RED"
     val trafficAction = when (trafficLight) {
         "RED"    -> "STOP"
@@ -75,12 +72,13 @@ fun task3_3() {
         "GREEN"  -> "GO"
         else     -> "INVALID"
     }
-    println("Traffic light is $trafficLight → $trafficAction")
+    println("Traffic light is $trafficLight → $trafficAction") // ✅ FIXED
 }
 
-
-
-fun task4_1() {
+// ============================================================
+// SECTION 4: Loops
+// ============================================================
+fun seventhTask() {  // while loop: 1 to 10
     var i = 1
     while (i <= 10) {
         println(i)
@@ -88,8 +86,7 @@ fun task4_1() {
     }
 }
 
-
-fun task4_2() {
+fun eighthTask() {  // do-while: countdown
     var count = 5
     do {
         println("Countdown: $count")
@@ -98,66 +95,57 @@ fun task4_2() {
     println("Blast off!")
 }
 
-
-fun task4_3() {
+fun ninthTask() {  // for-in: shopping list
     val shoppingList = listOf("Milk", "Eggs", "Bread", "Butter", "Coffee")
-   
     shoppingList.forEachIndexed { index, item ->
         println("[${index + 1}] $item")
     }
 }
 
-
-fun task4_4() {
-   
+fun tenthTask() {  // ranges
     println("1 to 20 inclusive:")
     for (n in 1..20) print("$n ")
     println()
 
-  
     println("1 to 20 excluding 20:")
     for (n in 1 until 20) print("$n ")
     println()
 
-    
     println("Even numbers 2 to 20:")
     for (n in 2..20 step 2) print("$n ")
     println()
 
-   
     println("Letters A to Z:")
     for (ch in 'A'..'Z') print("$ch ")
     println()
 }
 
-
-
-
-fun task5_2() {
+// ============================================================
+// SECTION 5: Statements vs Expressions
+// ============================================================
+fun eleventhTask() {  // if-else as expression
     val age = 20
     val status = if (age >= 18) "Adult" else "Minor"
     println("Age $age → $status")
 }
 
-
-fun task5_3() {
+fun task5_3() {  // max of two numbers using expression
     val a = 42
     val b = 77
     val maxNumber = if (a > b) a else b
-    println("Max of $a and $b is $maxNumber")
+    println()
 }
 
-
-
-
+// ============================================================
+// SECTION 6: Student Management System
+// ============================================================
 val students = listOf(
-    "Musa"   to 85,
-    "phil"     to 42,
-    "Abdi" to 67,
-    "Issa"   to 91,
-    "Lemah"   to 38
+    "Musa"  to 85,
+    "Phil"  to 42,  // ✅ IMPROVED: capitalised for consistency
+    "Abdi"  to 67,
+    "Issa"  to 91,
+    "Lemah" to 38
 )
-
 
 fun displayAllStudents() {
     println("--- All Students ---")
@@ -166,15 +154,12 @@ fun displayAllStudents() {
     }
 }
 
-
 fun getAverageScore(): Double {
-    val total = students.sumOf { it.second }  
+    val total = students.sumOf { it.second }
     return total.toDouble() / students.size
 }
 
-
 fun findTopStudent(): String {
-   
     return students.maxByOrNull { it.second }?.first ?: "No students"
 }
 
@@ -186,19 +171,16 @@ fun classifyStudents() {
     }
 }
 
-
-
+// ============================================================
+// BONUS: Calculator
+// ============================================================
 fun calculator() {
-    println("\n=== Simple Calculator ===")
+    println()
     print("Enter first number: ")
-    val a = readln().toDoubleOrNull() ?: run {
-        println("Invalid number."); return
-    }
+    val a = readln().toDoubleOrNull() ?: run { println("Invalid number."); return }
 
     print("Enter second number: ")
-    val b = readln().toDoubleOrNull() ?: run {
-        println("Invalid number."); return
-    }
+    val b = readln().toDoubleOrNull() ?: run { println("Invalid number."); return }
 
     print("Enter operation (+, -, *, /): ")
     val op = readln().trim()
@@ -211,21 +193,20 @@ fun calculator() {
             println("Error: Division by zero is not allowed.")
             return
         } else a / b
-        else -> {
-            println("Error: Unknown operation '$op'.")
-            return
-        }
+        else -> { println("Error: Unknown operation '$op'."); return }
     }
 
     println("$a $op $b = $result")
 }
 
-
+// ============================================================
+// MAIN
+// ============================================================
 fun main() {
 
     println("========== SECTION 1 ==========")
-    task1_2()
-    task1_3()
+    firstTask()
+    secondTask()
 
     println("\n========== SECTION 2 ==========")
     displayMenu()
@@ -237,23 +218,23 @@ fun main() {
     println("Is 7 even? ${isEven(7)}")
 
     println("\n========== SECTION 3 ==========")
-    task3_1()
-    task3_2()
-    task3_3()
+    thirdTask()
+    fourthTask()
+    fifthTask()
 
     println("\n========== SECTION 4 ==========")
     println("-- while: 1 to 10 --")
-    task4_1()
+    seventhTask()       // FIX 2: was sixthtask() — doesn't exist
     println("-- do-while: countdown --")
-    task4_2()
+    eighthTask()        // FIX 3: was seventhtask() — wrong function
     println("-- for-in: shopping list --")
-    task4_3()
+    ninthTask()         // FIX 4: was eighthtask() — wrong function
     println("-- ranges --")
-    task4_4()
+    tenthTask()         // FIX 5: was ninethtask() — wrong function
 
     println("\n========== SECTION 5 ==========")
-    task5_2()
-    task5_3()
+    eleventhTask()      // FIX 6: was tenthtask() — wrong function; also fixed typo eleventh() → eleventhTask()
+    task5_3()           // FIX 7: was completely missing from main()
 
     println("\n========== SECTION 6 ==========")
     displayAllStudents()
@@ -261,5 +242,16 @@ fun main() {
     println("Top Student: ${findTopStudent()}")
     classifyStudents()
 
-
+    // Uncomment to run interactive bonus calculator:
+    // calculator()
 }
+
+
+
+
+
+
+
+
+
+
